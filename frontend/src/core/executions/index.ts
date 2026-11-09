@@ -12,11 +12,15 @@
 export {
   cellExecutionInputsAtom,
   cellFreshnessAtom,
+  cellOutlineAtom,
+  cellOutputAtom,
   cellOutputInputsAtom,
+  cellOutputsAtom,
   clearCellOutputs,
   notebookIsRunningAtom,
   notebookQueuedOrRunningCountAtom,
   observeCellMessage,
+  releaseCellOutputAtoms,
   runtimeStatusAtom,
   waitForRuntimeRunning,
 } from "./atoms";
@@ -33,6 +37,7 @@ export {
 export {
   type CellError,
   type CellOutput,
+  cellOutputsView,
   cellOutputView,
   type HostDiagnostic,
   scratchOutputView,
