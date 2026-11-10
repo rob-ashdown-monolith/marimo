@@ -52,7 +52,6 @@ describe("createLazyRequests", () => {
       sendInstantiate: vi.fn().mockResolvedValue({ instantiated: true }),
       sendFunctionRequest: vi.fn().mockResolvedValue({ result: "data" }),
       sendRestart: vi.fn().mockResolvedValue({ restarted: true }),
-      sendInterrupt: vi.fn().mockResolvedValue({ interrupted: true }),
       sendPdb: vi.fn().mockResolvedValue({ pdb: true }),
       sendRunScratchpad: vi.fn().mockResolvedValue({ run: true }),
       installExportRequirements: vi.fn().mockResolvedValue({

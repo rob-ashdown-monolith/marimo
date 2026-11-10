@@ -22,6 +22,7 @@ export {
 } from "./atoms";
 export type { CellFreshness, CellFreshnessLookup } from "./freshness";
 export { replyInput } from "./input";
+export { interruptRuntime } from "./interrupt";
 export { runCells, syncEdits, waitForRuntime } from "./run";
 export {
   useCellExecution,

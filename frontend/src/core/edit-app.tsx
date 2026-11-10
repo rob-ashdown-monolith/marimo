@@ -28,7 +28,8 @@ import { CellArray } from "../components/editor/renderers/cell-array";
 import { CellsRenderer } from "../components/editor/renderers/cells-renderer";
 import { useHotkey } from "../hooks/useHotkey";
 import { hasCellsAtom } from "./cells/cells";
-import { notebookIsRunningAtom } from "./executions";
+import { interruptRuntime, notebookIsRunningAtom } from "./executions";
+import { store } from "./state/jotai";
 import { numColumnsAtom } from "./cells/layout";
 import { useCellActions } from "./cells/actions";
 import type { AppConfig, UserConfig } from "./config/config-schema";
@@ -74,7 +75,7 @@ export const EditApp: React.FC<EditAppProps> = ({
   const viewState = useAtomValue(viewStateAtom);
   const numColumns = useAtomValue(numColumnsAtom);
   const filename = useFilename();
-  const { sendComponentValues, sendInterrupt } = useRequestClient();
+  const { sendComponentValues } = useRequestClient();
 
   const isEditing = viewState.mode === "edit";
   const isPresenting = viewState.mode === "present";
@@ -116,7 +117,7 @@ export const EditApp: React.FC<EditAppProps> = ({
     runStaleCells();
   });
   useHotkey("global.interrupt", () => {
-    sendInterrupt();
+    void interruptRuntime(store);
   });
   useHotkey("global.hideCode", () => {
     togglePresenting();
@@ -213,7 +214,7 @@ export const EditApp: React.FC<EditAppProps> = ({
           <Controls
             presenting={isPresenting}
             onTogglePresenting={togglePresenting}
-            onInterrupt={sendInterrupt}
+            onInterrupt={() => interruptRuntime(store)}
             onRun={runStaleCells}
             connectionState={connection.state}
             running={isRunning}

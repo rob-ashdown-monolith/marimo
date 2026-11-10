@@ -126,7 +126,6 @@ const ACTIONS: Record<keyof AllRequests, Action> = {
 
   // These wait for connection
   sendStdin: "waitForConnectionOpen",
-  sendInterrupt: "waitForConnectionOpen",
   sendPdb: "waitForConnectionOpen",
   sendSetBreakpoints: "waitForConnectionOpen",
   sendInstallMissingPackages: "waitForConnectionOpen",
